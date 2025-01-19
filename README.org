@@ -1,0 +1,68 @@
+* Capture Org to Clipboard
+
+** Overview
+Capture Org to Clipboard is a Chrome extension that allows users to capture selected content from a webpage and send it to Emacs via org-protocol using the `capture-html-to-clipboard` protocol. The captured content is converted to Org-mode format using Pandoc and includes an Org-style hyperlink for the source URL.
+
+** Features
+- Capture selected HTML content from any webpage.
+- Convert HTML to Org-mode using Pandoc.
+- Prepend an Org-style link for the source URL.
+- Copy the converted Org content to the clipboard.
+
+** Requirements
+- Emacs with org-protocol enabled. Verify `org-protocol` is loaded: Evaluate `(featurep 'org-protocol)`, which should return `t`.
+- Pandoc installed and accessible from your system's `PATH`. Verify `pandoc` is in your `exec-path`, this should return the path to the Pandoc executable:
+   #+begin_src emacs-lisp
+   (executable-find "pandoc")
+   #+end_src
+- `org-protocol-capture-html` package installed: clone the repository: https://github.com/alphapapa/org-protocol-capture-html and follow the setup instructions in the repository to load the package.
+** Installation
+1. Clone this repository or download the source files.
+2. Copy the `org-protocol-capture-to-clipboard.el` file to a directory in your Emacs `load-path`. Add the following to your Emacs configuration (e.g., `~/.emacs.d/init.el`):
+   #+begin_src emacs-lisp
+   (add-to-list 'load-path "~/.emacs.d/lisp/") ;; Adjust path as needed
+   (require 'org-protocol-capture-to-clipboard)
+   #+end_src
+3. Open Chrome and navigate to `chrome://extensions/`.
+4. Enable "Developer mode" (toggle in the top-right corner).
+5. Click "Load unpacked" and select the directory containing the extension files.
+6. Configure the keyboard shortcut:
+   - Go to `chrome://extensions/shortcuts`.
+   - Set a shortcut for "Capture and copy to clipboard" (e.g., `Ctrl+Shift+Y`).
+
+** Usage
+1. Highlight text on a webpage.
+2. Press the keyboard shortcut (`Ctrl+Shift+Y` by default) to invoke the extension.
+3. The selected content will be:
+   - Converted to Org-mode format.
+   - Prepended with an Org-style link to the source URL.
+   - Copied to the clipboard.
+
+** Example Output
+If the selected text is:
+- URL: `https://example.com`
+- Title: `Example Title`
+- Content: `This is the selected text.`
+
+The clipboard will contain:
+#+begin_example
+[[https://example.com][Example Title]]
+
+This is the selected text.
+#+end_example
+
+** Development
+To modify or contribute to the extension:
+1. Edit the relevant source files:
+   - `manifest.json`: Extension metadata and permissions.
+   - `background.js`: Handles the shortcut and executes the capture logic.
+   - `org-protocol-capture-to-clipboard.el`: Emacs Lisp script for processing and sending content to Emacs.
+2. Reload the extension via `chrome://extensions/`.
+
+** License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+** Acknowledgments
+- [[http://orgmode.org/worg/org-contrib/org-protocol.html][Org-Protocol]] for seamless integration with Emacs.
+- [[https://pandoc.org][Pandoc]] for powerful HTML-to-Org conversion.
+- https://github.com/alphapapa/org-protocol-capture-html - for functionality of capturing and converting webpage content into Org-mode with additional flexibility and features.

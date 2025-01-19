@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "Capture Org to Clipboard",
+    "version": "1.0",
+    "description": "Capture selected content from a webpage and send it to Emacs org-protocol with capture-html-to-clipboard protocol. http://orgmode.org/worg/org-contrib/org-protocol.html",
+    "homepage_url": "https://github.com/danielkrizian/org-capture-extension",
+    "background": {
+        "persistent": false,
+        "scripts": ["background.js"]
+    },
+    "permissions": ["activeTab"],
+    "browser_action": {
+        "default_title": "Capture Org to Clipboard"
+    },
+    "commands": {
+        "capture_org_to_clipboard": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Y"
+            },
+            "description": "Capture and copy to clipboard"
+        }
+    }
+}
