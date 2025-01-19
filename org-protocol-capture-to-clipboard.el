@@ -1,4 +1,22 @@
 ;; -*- lexical-binding: t -*-
+;;; org-protocol-capture-to-clipboard.el --- Capture webpage content to Org clipboard
+
+;; Author: Daniel Krizian
+;; Maintainer: Daniel Krizian
+;; Version: 1.0
+;; Package-Requires: ((emacs "27.1") (org "9.4") (org-protocol-capture-html "0.1"))
+;; Homepage: https://github.com/danielkrizian/org-protocol-capture-to-clipboard
+;; Keywords: org, clipboard, capture, web
+
+;; This file is not part of GNU Emacs.
+
+;;; Commentary:
+
+;; This package provides a way to capture selected webpage content,
+;; convert it to Org-mode using Pandoc, and copy it to the clipboard
+;; with an Org-style hyperlink for the source.
+
+;;; Code:
 
 (require 'org-protocol)
 (require 'org-protocol-capture-html)   ;; https://github.com/alphapapa/org-protocol-capture-html
@@ -48,3 +66,5 @@ Uses `make-process` to avoid creating a temporary buffer."
                :kill-client t))
 
 (provide 'org-protocol-capture-to-clipboard)
+
+;;; org-protocol-capture-to-clipboard.el ends here
